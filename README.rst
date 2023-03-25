@@ -6,8 +6,7 @@ elements
 
 Documentation
 -------------
-Code documentation is not yet available
-
+Code documentation is available at `elements_tvg.readthedocs.io <https://elements-tvg.readthedocs.io/en/latest/>`_
 
 Installation
 ------------
