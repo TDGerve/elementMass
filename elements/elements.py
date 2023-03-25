@@ -8,7 +8,7 @@ from .Periodic_table import get_periodic_table
 periodic_table = get_periodic_table()
 
 
-def find_elements(compound: str):
+def _find_elements(compound: str):
     """
     Docstring
     """
@@ -36,7 +36,7 @@ def find_elements(compound: str):
     return elements
 
 
-def find_quantity(element: str):
+def _find_quantity(element: str):
     """
     Docstring
     """
@@ -49,12 +49,12 @@ def find_quantity(element: str):
     return element_quantity
 
 
-def decompose(compound: str):
+def _decompose(compound: str):
     """
     Docstring
     """
 
-    elements = [find_quantity(i) for i in find_elements(compound)]
+    elements = [_find_quantity(i) for i in _find_elements(compound)]
 
     elements_pd = pd.DataFrame(elements, columns=["element", "quantity"]).set_index(
         "element"
@@ -68,7 +68,7 @@ def calculate_weight(compound: str):
     Docstring
     """
 
-    elements = decompose(compound)
+    elements = _decompose(compound)
 
     return (periodic_table[elements.index] * elements).sum()
 
@@ -95,7 +95,7 @@ def cation_numbers(compounds: List[str]):
 
     for i in cations.index:
 
-        cations[i] = decompose(i)[0]
+        cations[i] = _decompose(i)[0]
 
     return cations
 
@@ -109,7 +109,7 @@ def oxygen_numbers(compounds: List[str]):
 
     for i in oxygen.index:
         try:
-            oxygen[i] = decompose(i)["O"]
+            oxygen[i] = _decompose(i)["O"]
         except KeyError:
             oxygen[i] = 0
 
@@ -121,7 +121,7 @@ def cation_names(compounds: List[str]):
     Docstrings
     """
 
-    names = [decompose(oxide).index[0] for oxide in compounds]
+    names = [_decompose(oxide).index[0] for oxide in compounds]
 
     if "Fe2O3" in compounds:
         idx = compounds.index("Fe2O3")
