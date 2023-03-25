@@ -61,7 +61,7 @@ def calculate_weight(compound: str) -> float:
 
     Parameters
     ----------
-    compound    str
+    compound    :   str
         chemical notation of a compound or element
 
     Returns
@@ -81,7 +81,7 @@ def compound_weights(compounds: List[str]) -> pd.Series:
 
     Parameters
     ----------
-    compound    list of str
+    compound    :   list of str
         chemical notation of compounds or elements
 
     Returns
@@ -104,7 +104,7 @@ def cation_numbers(compounds: List[str]) -> pd.Series:
 
     Parameters
     ----------
-    compound    list of str
+    compound    :   list of str
         chemical notation of compounds or elements
 
     Returns
@@ -128,7 +128,7 @@ def oxygen_numbers(compounds: List[str]) -> pd.Series:
 
     Parameters
     ----------
-    compound    list of str
+    compound    :   list of str
         chemical notation of compounds or elements
 
     Returns
@@ -154,7 +154,7 @@ def cation_names(compounds: List[str]) -> List:
 
     Parameters
     ----------
-    compound    list of str
+    compound    :   list of str
         chemical notation of compounds or elements
 
     Returns
