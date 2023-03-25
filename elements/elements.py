@@ -9,9 +9,7 @@ periodic_table = get_periodic_table()
 
 
 def _find_elements(compound: str):
-    """
-    Docstring
-    """
+
     elements = re.findall("([A-Z][^A-Z]*)", str(compound))
 
     # Raise an error if no elements are found
@@ -37,9 +35,6 @@ def _find_elements(compound: str):
 
 
 def _find_quantity(element: str):
-    """
-    Docstring
-    """
 
     element_quantity = re.findall(r"(\D+|\d[^A-Z]*)", element)
 
@@ -50,9 +45,6 @@ def _find_quantity(element: str):
 
 
 def _decompose(compound: str):
-    """
-    Docstring
-    """
 
     elements = [_find_quantity(i) for i in _find_elements(compound)]
 
@@ -94,7 +86,7 @@ def compound_weights(compounds: List[str]) -> pd.Series:
 
     Returns
     -------
-    pd.Series
+    pandas.Series
         weights in atomic mass units
     """
 
@@ -116,7 +108,8 @@ def cation_numbers(compounds: List[str]) -> pd.Series:
         chemical notation of compounds or elements
 
     Returns
-    pd.Series
+    -------
+    pandas.Series
         number of cations in each compound
     """
 
@@ -139,7 +132,8 @@ def oxygen_numbers(compounds: List[str]) -> pd.Series:
         chemical notation of compounds or elements
 
     Returns
-    pd.Series
+    -------
+    pandas.Series
         number of oxygen in each compound
     """
 
@@ -164,6 +158,7 @@ def cation_names(compounds: List[str]) -> List:
         chemical notation of compounds or elements
 
     Returns
+    -------
     list
         names of cations
     """
