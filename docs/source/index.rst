@@ -15,7 +15,7 @@ elements quickstart
 
 About
 -----
-elements is a Python library for calculating atomic weights of chemical compounds, as well as cation oxygen and amounts of simple oxides.
+elements is a Python library for calculating atomic weights of chemical compounds, as well as cation oxygen and amounts in simple oxides.
 
 Installation
 ------------
