@@ -63,9 +63,19 @@ def _decompose(compound: str):
     return elements_pd.astype(float).squeeze("columns")
 
 
-def calculate_weight(compound: str):
+def calculate_weight(compound: str) -> float:
     """
-    Docstring
+    Get the atomic mass of a compound or element
+
+    Parameters
+    ----------
+    compound    str
+        chemical notation of a compound or element
+
+    Returns
+    -------
+    float
+        weight in atomic mass units
     """
 
     elements = _decompose(compound)
@@ -73,9 +83,19 @@ def calculate_weight(compound: str):
     return (periodic_table[elements.index] * elements).sum()
 
 
-def compound_weights(compounds: List[str]):
+def compound_weights(compounds: List[str]) -> pd.Series:
     """
-    Docstring
+    Get the atomic mass of a compounds or elements
+
+    Parameters
+    ----------
+    compound    list of str
+        chemical notation of compounds or elements
+
+    Returns
+    -------
+    pd.Series
+        weights in atomic mass units
     """
 
     weights = pd.Series(index=compounds, name="weights", dtype="float64")
@@ -86,9 +106,18 @@ def compound_weights(compounds: List[str]):
     return weights
 
 
-def cation_numbers(compounds: List[str]):
+def cation_numbers(compounds: List[str]) -> pd.Series:
     """
-    Docstring
+    Get the cation amount in compounds
+
+    Parameters
+    ----------
+    compound    list of str
+        chemical notation of compounds or elements
+
+    Returns
+    pd.Series
+        number of cations in each compound
     """
 
     cations = pd.Series(index=compounds, name="cations", dtype=int)
@@ -100,9 +129,18 @@ def cation_numbers(compounds: List[str]):
     return cations
 
 
-def oxygen_numbers(compounds: List[str]):
+def oxygen_numbers(compounds: List[str]) -> pd.Series:
     """
-    Docstrings
+    Get the oxygen amount in compounds
+
+    Parameters
+    ----------
+    compound    list of str
+        chemical notation of compounds or elements
+
+    Returns
+    pd.Series
+        number of oxygen in each compound
     """
 
     oxygen = pd.Series(index=compounds, name="oxygen", dtype=int)
@@ -116,9 +154,18 @@ def oxygen_numbers(compounds: List[str]):
     return oxygen
 
 
-def cation_names(compounds: List[str]):
+def cation_names(compounds: List[str]) -> List:
     """
-    Docstrings
+    Get the name of the first cation in a compound
+
+    Parameters
+    ----------
+    compound    list of str
+        chemical notation of compounds or elements
+
+    Returns
+    list
+        names of cations
     """
 
     names = [_decompose(oxide).index[0] for oxide in compounds]
