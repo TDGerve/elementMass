@@ -1,7 +1,7 @@
 ===========
 elements
 ===========
-elements is a compact Python library for calculating atomic weights of chemical compounds as well as cation and oxygen amounts of simple oxides.
+elements is a compact Python library for calculating atomic weights of chemical compounds as well as cation and oxygen amounts in simple oxides.
 
 
 
