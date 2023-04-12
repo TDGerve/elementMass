@@ -20,8 +20,7 @@ dependencies = ["pandas", "pyarrow"]
 [project.urls]
 Homepage = "https://github.com/TDGerve/elements"
 
-[tool.setuptools.packages.find]
-where = ["elements"]
+
 
 [tool.setuptools.package-data]
-"data" = ["*.parquet"]
+"elements.data" = ["*.parquet"]

@@ -9,6 +9,7 @@ elements quickstart
    about
    changelog
    getting_started
+   notebooks/usage
    code_documentation
    support
    license

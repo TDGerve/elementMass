@@ -9,7 +9,6 @@ periodic_table = get_periodic_table()
 
 
 def _find_elements(compound: str):
-
     elements = re.findall("([A-Z][^A-Z]*)", str(compound))
 
     # Raise an error if no elements are found
@@ -21,7 +20,7 @@ def _find_elements(compound: str):
         if sum(c.islower() for c in element) > 1:
             raise ValueError(f"'{element}' is not a valid element")
         # Check for non-word characters
-        elif len(re.findall(r"\W", element)) > 0:
+        elif len(re.findall(r"\w|\.", element)) != len(element):
             raise ValueError(f"'{element}' contains an invalid character")
 
     # Raise an error if there are any leftover characters
@@ -35,7 +34,6 @@ def _find_elements(compound: str):
 
 
 def _find_quantity(element: str):
-
     element_quantity = re.findall(r"(\D+|\d[^A-Z]*)", element)
 
     if len(element_quantity) < 2:
@@ -45,7 +43,6 @@ def _find_quantity(element: str):
 
 
 def _decompose(compound: str):
-
     elements = [_find_quantity(i) for i in _find_elements(compound)]
 
     elements_pd = pd.DataFrame(elements, columns=["element", "quantity"]).set_index(
@@ -116,7 +113,6 @@ def cation_numbers(compounds: List[str]) -> pd.Series:
     cations = pd.Series(index=compounds, name="cations", dtype=int)
 
     for i in cations.index:
-
         cations[i] = _decompose(i)[0]
 
     return cations
