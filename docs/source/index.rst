@@ -1,6 +1,6 @@
-==============================
-elements quickstart
-==============================
+======================
+elementMass quickstart
+======================
 
 .. toctree::
    :maxdepth: 2
@@ -16,7 +16,7 @@ elements quickstart
 
 About
 -----
-elements is a Python library for calculating atomic weights of chemical compounds, as well as cation oxygen and amounts in simple oxides.
+elementMass is a Python library for calculating atomic weights of chemical compounds, as well as cation oxygen and amounts in simple oxides.
 
 Installation
 ------------
@@ -24,7 +24,7 @@ elements can be installed with pip by running:
 
 .. code-block:: bash
 
-    pip install git+https://github.com/TDGerve/elements.git
+    pip install elementMass
 
 in a terminal
 

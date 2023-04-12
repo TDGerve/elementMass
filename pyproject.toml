@@ -3,7 +3,7 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "elements"
+name = "elementMass"
 version = "1.0.0"
 authors = [{ name = "Thomas van Gerve" }]
 description = ""
@@ -20,7 +20,5 @@ dependencies = ["pandas", "pyarrow"]
 [project.urls]
 Homepage = "https://github.com/TDGerve/elements"
 
-
-
 [tool.setuptools.package-data]
-"elements.data" = ["*.parquet"]
+"elementMass.data" = ["*.parquet"]

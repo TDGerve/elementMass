@@ -1,7 +1,7 @@
 ===========
-elements
+elementMass
 ===========
-elements is a compact Python library for calculating atomic weights of chemical compounds as well as cation and oxygen amounts in simple oxides.
+elementMass is a compact Python library for calculating atomic weights of chemical compounds as well as cation and oxygen amounts in simple oxides.
 
 
 
@@ -15,7 +15,7 @@ elements can be installed with pip by running:
 
 .. code-block:: bash
 
-    pip install git+https://github.com/TDGerve/elements.git
+    pip install elementMass
 
 in a terminal.
 If you want to install from a specific git branch or release, use:

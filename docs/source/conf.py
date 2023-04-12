@@ -17,7 +17,7 @@ sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "elements"
+project = "elementMass"
 copyright = "2023, Thomas van Gerve"
 author = "Thomas van Gerve"
 release = "1.0"

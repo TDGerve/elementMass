@@ -9,6 +9,6 @@ Modules
 *******
 
 
-.. automodule:: elements.elements
+.. automodule:: elementMass.elements
     :members:
 

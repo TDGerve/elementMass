@@ -4,11 +4,11 @@ Getting started
 
 Installation
 ------------
-elements can be installed with pip by running
+elementMass can be installed with pip by running
 
 .. code-block:: bash
 
-    pip install git+https://github.com/TDGerve/elements.git
+    pip install elementMass
 
 in a terminal.
 
