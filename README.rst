@@ -7,7 +7,7 @@ elementMass is a compact Python library for calculating atomic weights of chemic
 
 Documentation
 -------------
-Code documentation is available at `elements_tvg.readthedocs.io <https://elementMass.readthedocs.io/en/latest/>`_
+Code documentation is available at `elementMass.readthedocs.io <https://elementMass.readthedocs.io/en/latest/>`_
 
 Installation
 ------------
