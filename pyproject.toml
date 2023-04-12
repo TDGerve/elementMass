@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "elementMass"
 version = "1.0.0"
 authors = [{ name = "Thomas van Gerve" }]
-description = ""
+description = "elementMass is a compact Python library for calculating atomic weights of chemical compounds"
 readme = "README.rst"
 requires-python = ">=3.8"
 license = { file = "LICENSE" }
