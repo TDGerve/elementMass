@@ -22,7 +22,7 @@ If you want to install from a specific git branch or release, use:
 
 .. code-block:: bash
 
-    pip install git+https://github.com/TDGerve/elements.git@tag
+    pip install git+https://github.com/TDGerve/elementMass.git@tag
 
 where *tag* should be repleaced by the release tag or branch name (e.g. *v1.0.0* or *development*)
 
