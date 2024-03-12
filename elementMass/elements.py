@@ -113,7 +113,7 @@ def cation_numbers(compounds: List[str]) -> pd.Series:
     cations = pd.Series(index=compounds, name="cations", dtype=int)
 
     for i in cations.index:
-        cations[i] = _decompose(i)[0]
+        cations.loc[i] = _decompose(i)[0]
 
     return cations
 
