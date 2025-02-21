@@ -235,7 +235,7 @@ def cation_names(compounds: List[str]) -> List:
 
 def get_oxide_name(ion: str) -> str:
     """
-    Convert an ion name to oxide. If ion charge is not included in the ion name, ElementMass's default oxidates are used.
+    Convert an ion name to oxide. If ion charge is not included in the ion name, ElementMass's default oxidation states are used.
 
     Parameters
     ----------
