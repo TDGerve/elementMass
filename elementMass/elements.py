@@ -1,8 +1,11 @@
 import re
-from typing import List
+from decimal import Decimal
+from fractions import Fraction
+from typing import Dict, List
 
 import pandas as pd
 
+from .oxidation_states import Oxidation_state
 from .Periodic_table import get_periodic_table
 
 periodic_table = get_periodic_table()
@@ -102,7 +105,7 @@ def cation_numbers(compounds: List[str]) -> pd.Series:
     Parameters
     ----------
     compound    :   list of str
-        chemical notation of compounds or elements
+        chemical notation of an oxide or element
 
     Returns
     -------
@@ -113,7 +116,7 @@ def cation_numbers(compounds: List[str]) -> pd.Series:
     cations = pd.Series(index=compounds, name="cations", dtype=int)
 
     for i in cations.index:
-        cations.loc[i] = _decompose(i).iloc[0]
+        cations.loc[i] = _decompose(i).iloc[0] if _is_oxide(i) else 1
 
     return cations
 
@@ -144,9 +147,64 @@ def oxygen_numbers(compounds: List[str]) -> pd.Series:
     return oxygen
 
 
+def _get_cation_charge(element: str) -> int:
+
+    if _is_oxide(element):
+        oxide = _decompose(element)
+        return _get_cation_charge_oxide(oxide)
+
+    return _get_element_charge(element)
+
+
+def _get_cation_charge_oxide(oxide: pd.Series):
+
+    if len(oxide) > 2:
+        raise ValueError("oxide contains more than 1 cations")
+
+    n_O = oxide["O"]
+    n_cations = oxide.iloc[0]
+
+    charge = int(n_O * 2 / n_cations)
+
+    return charge
+
+
+def _get_element_charge(element: str):
+
+    try:
+        charge = int(re.sub("\D", "", element))
+    except ValueError:
+        charge = Oxidation_state[element]
+
+    if not (-5 <= charge <= 9):
+        raise ValueError(f"Invalid element charge: {charge}")
+
+    return charge
+
+
+def _is_oxide(compound: str) -> bool:
+    """
+    returns true if compound contains more than one element and one of them is oxygen. Does not work for 'Os'.
+    """
+
+    elements = re.sub(r"[a-z\d]+", "", compound)  # strip lowercase letters and numbers
+
+    return (len(elements) > 1) & ("O" in elements)
+
+
+def _is_element(compound: str) -> bool:
+    """
+    returns true if compound is a single element
+    """
+
+    elements = re.sub(r"[a-z\d]+", "", compound)  # strip lowercase letters and numbers
+
+    return len(elements) == 1
+
+
 def cation_names(compounds: List[str]) -> List:
     """
-    Get the name of the first cation in a compound
+    Get the name of the first cation for each element in compounds
 
     Parameters
     ----------
@@ -159,10 +217,42 @@ def cation_names(compounds: List[str]) -> List:
         names of cations
     """
 
-    names = [_decompose(oxide).index[0] for oxide in compounds]
+    is_oxide = [_is_oxide(c) for c in compounds]
+    # is_element = [_is_element(c) for c in compounds]
+    element_names = [
+        _decompose(c).index[0] if ox else re.sub(r"\d+", "", c)
+        for c, ox in zip(compounds, is_oxide)
+    ]
 
-    if "Fe2O3" in compounds:
-        idx = compounds.index("Fe2O3")
-        names[idx] = "Fe3"
+    charges = [_get_cation_charge(c) for c in compounds]
+    names = [
+        (e if Oxidation_state[e] == charge else f"{e}{int(charge)}")
+        for e, charge in zip(element_names, charges)
+    ]
 
     return names
+
+
+def get_oxide_name(ion: str) -> str:
+
+    try:
+        charge = float(re.sub(r"\D", "", ion))
+    except ValueError:
+        charge = Oxidation_state[ion]
+
+    if charge < 0:
+        return ion
+
+    ratio = Fraction(Decimal(charge / 2))
+
+    n_cation = int(ratio.denominator) if ratio.denominator > 1 else ""
+    n_O = int(ratio.numerator) if ratio.numerator > 1 else ""
+
+    ion_name = re.sub(r"\d+", "", ion)
+
+    return f"{ion_name}{n_cation}O{n_O}"
+
+
+def get_oxide_names(ions: List[str]) -> List:
+
+    return [get_oxide_name(ion=ion) for ion in ions]
