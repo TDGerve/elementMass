@@ -204,7 +204,7 @@ def _is_element(compound: str) -> bool:
 
 def cation_names(compounds: List[str]) -> List:
     """
-    Get the name of the first cation for each element in compounds
+    Get the name of the first cation for each element in ``compounds``
 
     Parameters
     ----------
@@ -234,6 +234,19 @@ def cation_names(compounds: List[str]) -> List:
 
 
 def get_oxide_name(ion: str) -> str:
+    """
+    Convert an ion name to oxide. If ion charge is not included in the ion name, ElementMass's default oxidates are used.
+
+    Parameters
+    ----------
+    ion    :   str
+        ion name, charge can optionally be included in the name e.g. 'Fe3'
+
+    Returns
+    -------
+    str
+        name of oxide
+    """
 
     try:
         charge = float(re.sub(r"\D", "", ion))
